@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Wissal 💖</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink:        #e63f82;
+      --pink-dark:   #c0296a;
+      --pink-light:  #ffd6e9;
+      --pink-soft:   #fff0f6;
+      --rose:        #f7b8d3;
+      --gold:        #f0c060;
+      --text:        #3a1a2a;
+      --text-muted:  #7a4a60;
+      --text-faint:  #c09ab0;
+      --white:       #ffffff;
+      --shadow-card: 0 8px 32px rgba(198, 40, 106, 0.13);
+      --shadow-sm:   0 2px 8px rgba(198, 40, 106, 0.08);
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', 'Helvetica Neue', sans-serif;
+
+      --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+      --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+      --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+      --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+      --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+      --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+      --text-hero: clamp(2.8rem,   1rem    + 5.5vw,  6rem);
+
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
+      --space-4: 1rem;    --space-5: 1.25rem; --space-6: 1.5rem;
+      --space-8: 2rem;    --space-10: 2.5rem; --space-12: 3rem;
+      --space-16: 4rem;   --space-20: 5rem;
+
+      --radius-sm: 0.375rem; --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;  --radius-xl: 1.25rem;
+      --radius-2xl: 1.75rem; --radius-full: 9999px;
+    }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    body {
+      min-height: 100dvh;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 10% 0%, rgba(255,200,225,0.55) 0%, transparent 45%),
+        radial-gradient(ellipse at 90% 100%, rgba(255,180,210,0.4) 0%, transparent 40%),
+        linear-gradient(160deg, #fff5f9 0%, #ffeef5 40%, #fff8fb 100%);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ── FALLING ANIMATION ─────────────────── */
+    .confetti-layer, .hearts-layer {
+      position: fixed; inset: 0;
+      pointer-events: none; overflow: hidden; z-index: 1;
+    }
+
+    .piece, .heart {
+      position: absolute; top: -12vh;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    .piece {
+      width: 9px; height: 16px;
+      border-radius: 3px;
+      animation-name: fall;
+    }
+
+    .heart {
+      animation-name: floatFall;
+    }
+
+    @keyframes fall {
+      0%   { transform: translateY(-12vh) rotate(0deg); opacity: 0; }
+      8%   { opacity: 1; }
+      100% { transform: translateY(115vh) rotate(700deg); opacity: 1; }
+    }
+
+    @keyframes floatFall {
+      0%   { transform: translateY(-12vh) translateX(0px) scale(0.85); opacity: 0; }
+      8%   { opacity: 0.9; }
+      100% { transform: translateY(115vh) translateX(70px) scale(1.15); opacity: 0.9; }
+    }
+
+    /* ── LAYOUT ──────────────────────────────── */
+    .wrap {
+      position: relative; z-index: 2;
+      width: min(980px, 92%);
+      margin: 0 auto;
+      padding: var(--space-10) 0 var(--space-20);
+    }
+
+    /* ── HERO ──────────────────────────────────── */
+    .hero {
+      text-align: center;
+      padding: var(--space-12) var(--space-4) var(--space-8);
+    }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      background: rgba(255,255,255,0.82);
+      color: var(--pink-dark);
+      padding: var(--space-2) var(--space-5);
+      border-radius: var(--radius-full);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin-bottom: var(--space-6);
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(230,63,130,0.15);
+    }
+
+    .hero-date {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-3);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: var(--text-hero);
+      line-height: 1.05;
+      color: var(--pink-dark);
+      margin-bottom: var(--space-5);
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--pink);
+    }
+
+    .hero-sub {
+      font-size: var(--text-lg);
+      max-width: 640px;
+      margin: 0 auto var(--space-6);
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    .age-pill {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--pink-light), #ffe0ef);
+      color: var(--pink-dark);
+      border: 1.5px dashed rgba(230,63,130,0.4);
+      padding: var(--space-2) var(--space-6);
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: var(--text-sm);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── STETHOSCOPE DIVIDER ─────────────────── */
+    .divider {
+      display: flex; align-items: center; gap: var(--space-4);
+      margin: var(--space-10) 0 var(--space-8);
+      color: var(--text-faint);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(230,63,130,0.25), transparent);
+    }
+
+    /* ── CARDS GRID ─────────────────────────── */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    @media (min-width: 780px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+      .full { grid-column: 1 / -1; }
+    }
+
+    .card {
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(230,63,130,0.1);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-8);
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(12px);
+    }
+
+    .card h2 {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      color: var(--pink-dark);
+      margin-bottom: var(--space-4);
+      line-height: 1.2;
+    }
+
+    .card p {
+      line-height: 1.8;
+      color: var(--text-muted);
+      margin-bottom: var(--space-3);
+    }
+
+    .card p:last-child { margin-bottom: 0; }
+
+    /* ── DOCTOR APPRECIATION CARD ───────────── */
+    .doctor-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(255,240,248,0.9));
+      border: 1.5px solid rgba(230,63,130,0.18);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .doctor-card::before {
+      content: '🩺';
+      position: absolute;
+      right: var(--space-5);
+      top: var(--space-5);
+      font-size: 2.5rem;
+      opacity: 0.15;
+    }
+
+    .doctor-icon-row {
+      display: flex;
+      gap: var(--space-3);
+      margin-bottom: var(--space-5);
+      flex-wrap: wrap;
+    }
+
+    .icon-chip {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      background: var(--pink-soft);
+      color: var(--pink-dark);
+      border: 1px solid rgba(230,63,130,0.18);
+      padding: var(--space-1) var(--space-4);
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .quote-block {
+      background: linear-gradient(135deg, #fff5f9, #ffeaf4);
+      border-left: 3px solid var(--pink);
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      padding: var(--space-4) var(--space-5);
+      margin: var(--space-5) 0 0;
+    }
+
+    .quote-block p {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--text-lg);
+      color: var(--pink-dark);
+      margin: 0;
+    }
+
+    /* ── BIRTHDAY LETTER ────────────────────── */
+    .letter-card { padding: var(--space-8); }
+
+    .letter {
+      background: linear-gradient(175deg, #fffafc, #fff4f9);
+      border: 1px solid rgba(230,63,130,0.1);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+      line-height: 2;
+      white-space: pre-line;
+      color: var(--text);
+      font-size: var(--text-base);
+      position: relative;
+    }
+
+    .letter::before {
+      content: '💌';
+      position: absolute;
+      right: var(--space-6);
+      top: var(--space-5);
+      font-size: 1.5rem;
+      opacity: 0.5;
+    }
+
+    .letter-salutation {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      color: var(--pink-dark);
+      display: block;
+      margin-bottom: var(--space-5);
+    }
+
+    .letter-sign {
+      font-family: var(--font-display);
+      font-style: italic;
+      color: var(--pink);
+      display: block;
+      margin-top: var(--space-5);
+      font-size: var(--text-lg);
+    }
+
+    /* ── PLAYLIST ────────────────────────────── */
+    .playlist iframe {
+      width: 100%;
+      min-height: 380px;
+      border: none;
+      border-radius: var(--radius-xl);
+      margin-top: var(--space-5);
+      box-shadow: var(--shadow-card);
+    }
+
+    /* ── FOOTER ──────────────────────────────── */
+    .footer-note {
+      text-align: center;
+      margin-top: var(--space-12);
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+      opacity: 0.9;
+    }
+
+    .footer-note span {
+      display: inline-block;
+      margin-top: var(--space-2);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--text-lg);
+      color: var(--pink);
+    }
+
+    /* ── RESPONSIVE ──────────────────────────── */
+    @media (max-width: 500px) {
+      .hero { padding: var(--space-8) var(--space-2) var(--space-6); }
+      .card { padding: var(--space-6); }
+      .letter { padding: var(--space-5); }
+    }
+  </style>
+</head>
+<body>
+  <div class="confetti-layer" id="confetti"></div>
+  <div class="hearts-layer" id="hearts"></div>
+
+  <div class="wrap">
+
+    <!-- HERO -->
+    <section class="hero">
+      <p class="hero-date">May 15th, 2026</p>
+      <div class="badge">🎂 Happy 23rd Birthday</div>
+      <h1>Happy Birthday,<br><em>Wissal</em></h1>
+      <p class="hero-sub">
+        To my favorite person with the kindest heart
+        today is all yours. You deserve every beautiful thing this world has to give.
+      </p>
+      <div class="age-pill">✨ 23 looks absolutely perfect on you</div>
+    </section>
+
+    <div class="divider">🩺 &nbsp; for the future doctor &nbsp; 🩺</div>
+
+    <!-- GRID -->
+    <section class="grid">
+
+      <!-- DOCTOR APPRECIATION CARD -->
+      <div class="card doctor-card">
+        <h2>For the future doctor 🩺</h2>
+        <div class="doctor-icon-row">
+          <span class="icon-chip">💪 Resilient</span>
+          <span class="icon-chip">🧠 Brilliant</span>
+          <span class="icon-chip">❤️ Compassionate</span>
+          <span class="icon-chip">🌟 Dedicated</span>
+        </div>
+        <p>
+          The long nights studying, the hard exams, the sacrifices I see all of it.
+          You show up every single day, not just for yourself but for every future patient
+          you'll one day hold the world for.
+        </p>
+        <p>
+          Medicine is lucky to have someone who carries both intelligence and a gentle soul.
+          That combination is rare, and it's completely, beautifully you.
+        </p>
+        <div class="quote-block">
+          <p>"The best doctors are the ones who never lose their humanity and you've never lost yours."</p>
+        </div>
+      </div>
+
+      <!-- BIRTHDAY MESSAGE CARD -->
+      <div class="card">
+        <h2>To my best friend 💖</h2>
+        <p>
+          Pink everywhere, hearts falling, music playing because you deserve a whole celebration
+          that's as warm and wonderful as you are.
+        </p>
+        <p>
+          You've been through a lot and still you show up, still you smile, still you care.
+          That's not nothing. That's everything.
+        </p>
+        <p>
+          I am so proud of you. So grateful for you.
+          And so, so happy you were born on this exact day.
+        </p>
+      </div>
+
+      <!-- BIRTHDAY LETTER full width -->
+      <div class="card full letter-card">
+        <h2>A little birthday letter for you 💌</h2>
+        <div class="letter"><span class="letter-salutation">Dear Wissal,</span>Happy birthday, beautiful one.
+
+My favorite person, my best friend, the girl who is going to change lives in a white coat someday
+today, it's all about you.
+
+You are 23 now. Twenty-three years of a soul that is kind, fierce, funny, and deeply, deeply good.
+I hope you feel that today. I hope you look around and see how much love surrounds you,
+because you've earned every single piece of it.
+
+Watching you chase your dream of becoming a doctor reminds me every day
+what real dedication looks like. You study when you're tired.
+You push when it gets hard. You don't give up.
+That is one of the most beautiful things about you.
+
+Thank you for always getting me.
+For understanding without needing explanations.
+For being the kind of friend who shows up not just on the good days, but on all of them.
+You have no idea how much that means.
+
+I hope this year brings you gentleness, joy, and all the rest you deserve.
+I hope medicine gives back to you what you give to it.
+And I hope you know, always, that I am in your corner.
+
+Happy birthday, future doctor.
+The world is better because you're in it.<span class="letter-sign">With so much love, always 💗</span></div>
+      </div>
+
+      <!-- SPOTIFY PLAYLIST full width -->
+      <div class="card full">
+        <h2>Your birthday playlist 🎶</h2>
+        <p style="color:var(--text-muted)">Press play and let the birthday vibes carry you 🌸</p>
+        <iframe
+          src="https://open.spotify.com/embed/playlist/38LX8uh1TYLE0RMUVi43VU?utm_source=generator"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+          title="Birthday Playlist for Wissal">
+        </iframe>
+      </div>
+
+    </section>
+
+    <p class="footer-note">
+      Made with love, pink skies, and a heart full of birthday feelings 💗
+      <span>Happy 23rd, Wissal 🌸</span>
+    </p>
+  </div>
+
+  <script>
+    const confettiEl = document.getElementById("confetti");
+    const heartsEl   = document.getElementById("hearts");
+
+    const colors = ["#e63f82","#f7b8d3","#ffd6e9","#ffffff","#f0c060","#c0296a","#ffc2dd","#ffadd1"];
+
+    function createConfetti(count = 150) {
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement("span");
+        p.className = "piece";
+        p.style.left = Math.random() * 100 + "vw";
+        p.style.background = colors[Math.floor(Math.random() * colors.length)];
+        p.style.width  = Math.random() * 9 + 6 + "px";
+        p.style.height = Math.random() * 14 + 8 + "px";
+        p.style.animationDuration = Math.random() * 7 + 5 + "s";
+        p.style.animationDelay   = Math.random() * 7 + "s";
+        p.style.opacity = 0.75 + Math.random() * 0.25;
+        p.style.transform = `rotate(${Math.random() * 360}deg)`;
+        confettiEl.appendChild(p);
+      }
+    }
+
+    function createHearts(count = 55) {
+      const emojis = ["💖","💗","💝","🌸","✨","💕"];
+      for (let i = 0; i < count; i++) {
+        const h = document.createElement("span");
+        h.className = "heart";
+        h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        h.style.left = Math.random() * 100 + "vw";
+        h.style.fontSize = Math.random() * 16 + 13 + "px";
+        h.style.animationDuration = Math.random() * 8 + 7 + "s";
+        h.style.animationDelay   = Math.random() * 9 + "s";
+        heartsEl.appendChild(h);
+      }
+    }
+
+    createConfetti();
+    createHearts();
+  </script>
+</body>
+</html>
